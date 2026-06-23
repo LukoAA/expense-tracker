@@ -18,3 +18,10 @@ Route::post('/logout', [LoginController::class, 'destroy']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
+
+use App\Http\Controllers\ExpenseController;
+
+Route::middleware('auth')->group(function () {
+    Route::get('/expenses', [ExpenseController::class, 'index']);
+    Route::post('/expenses', [ExpenseController::class, 'store']);
+});

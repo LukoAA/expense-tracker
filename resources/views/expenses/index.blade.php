@@ -31,16 +31,24 @@
         <button type="submit">Add Expense</button>
     </form>
 
-    <ul>
+    <<ul>
         @forelse ($expenses as $expense)
             <li>
                 {{ $expense->spent_on->format('M j, Y') }} —
                 {{ $expense->description }}:
                 ${{ number_format($expense->amount, 2) }}
+
+                <form action="/expenses/{{ $expense->id }}" method="POST" style="display:inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
             </li>
         @empty
             <li>No expenses yet.</li>
         @endforelse
     </ul>
+
+    <p><strong>Total: ${{ number_format($total, 2) }}</strong></p>
 </body>
 </html>

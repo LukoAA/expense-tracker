@@ -24,4 +24,6 @@ use App\Http\Controllers\ExpenseController;
 Route::middleware('auth')->group(function () {
     Route::get('/expenses', [ExpenseController::class, 'index']);
     Route::post('/expenses', [ExpenseController::class, 'store']);
+    Route::delete('/expenses/{expense}', [ExpenseController::class, 'destroy']);
 });
+

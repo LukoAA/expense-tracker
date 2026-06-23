@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Register</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Register')
+
+@section('content')
     <h1>Create an account</h1>
 
     @if ($errors->any())
-        <ul style="color:red">
+        <ul class="errors">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
@@ -17,11 +15,12 @@
 
     <form action="/register" method="POST">
         @csrf
-        <p><input type="text" name="name" placeholder="Name" value="{{ old('name') }}"></p>
-        <p><input type="email" name="email" placeholder="Email" value="{{ old('email') }}"></p>
-        <p><input type="password" name="password" placeholder="Password"></p>
-        <p><input type="password" name="password_confirmation" placeholder="Confirm password"></p>
+        <input type="text" name="name" placeholder="Name" value="{{ old('name') }}">
+        <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password_confirmation" placeholder="Confirm password">
         <button type="submit">Register</button>
     </form>
-</body>
-</html>
+
+    <p class="muted" style="margin-top:16px">Already have an account? <a href="/login">Log in</a>.</p>
+@endsection
